@@ -9,5 +9,5 @@ const app = express();
 app.use('/api/user', user);
 
 app.listen(config.api.port, () => {
-    console.log('Listening in port ', config.api.port);
+    console.log('Listening in port', config.api.port);
 });
