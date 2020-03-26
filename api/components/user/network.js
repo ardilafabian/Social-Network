@@ -34,7 +34,6 @@ function get(req, resp) {
 }
 
 function upsert(req, resp) {
-    console.log(req.body);
     Controller.upsert(req.body)
         .then((user) => {
             response.success(req, resp, user, 200);

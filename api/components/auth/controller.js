@@ -5,7 +5,7 @@ module.exports = function(injectedStore) {
 
     function upsert(data) {
         const authData = {
-            id = data.id,
+            id: data.id
         }
 
         if (data.username) {
@@ -17,5 +17,9 @@ module.exports = function(injectedStore) {
         }
 
         return store.upsert(TABLA, authData);
+    }
+
+    return {
+        upsert
     }
 }
