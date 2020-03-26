@@ -6,6 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fardila1011/Social-Network.git"
+  },
   "author": "Fabián Ardila",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fardila1011/Social-Network/issues"
+  },
+  "homepage": "https://github.com/fardila1011/Social-Network#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
 }
