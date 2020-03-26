@@ -1,3 +1,5 @@
+const auth = require('../../../auth');
+
 const TABLA = "auth";
 
 module.exports = function(injectedStore) {
@@ -7,7 +9,7 @@ module.exports = function(injectedStore) {
         const data = await store.query(TABLA, {username: username});
         if (data.password === password) {
             // generate token
-            return 'TOKEN';
+            return auth.sign(data);
         } else{
             throw new Error('Invalid information');
         }
