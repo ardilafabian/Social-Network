@@ -5,7 +5,15 @@ const Controller = require('./index');
 
 const router = express.Router();
 
-router.get('/', function(req, resp) {
+// Routes
+router.get('/', list);
+router.get('/:id', get);
+router.post('/', upsert);
+router.put('/', upsert);
+router.delete('/:id', remove);
+
+// Internal functions
+function list(req, resp) {
     Controller.list()
         .then((list) => {
             response.success(req, resp, list, 200);
@@ -13,9 +21,9 @@ router.get('/', function(req, resp) {
         .catch((err) => {
             response.error(req, resp, err.message, 500);
         });
-});
+}
 
-router.get('/:id', function(req, resp) {
+function get(req, resp) {
     Controller.get(req.params.id)
         .then((user) => {
             response.success(req, resp, user, 200);
@@ -23,9 +31,9 @@ router.get('/:id', function(req, resp) {
         .catch((err) => {
             response.error(req, resp, err.message, 500);
         });
-});
+}
 
-router.post('/', function(req, resp) {
+function upsert(req, resp) {
     console.log(req.body);
     Controller.upsert(req.body)
         .then((user) => {
@@ -34,9 +42,9 @@ router.post('/', function(req, resp) {
         .catch((err) => {
             response.error(req, resp, err.message, 500);
         });
-})
+}
 
-router.delete('/:id', function(req, resp) {
+function remove(req, resp) {
     Controller.remove(req.params.id)
         .then(() => {
             response.success(req, resp, "User deleted successfully.", 200);
@@ -44,6 +52,6 @@ router.delete('/:id', function(req, resp) {
         .catch((err) => {
             response.error(req, resp, err.message, 500);
         });
-})
+}
 
 module.exports = router;
