@@ -49,5 +49,5 @@ function decodeHeader(req) {
 
 module.exports = {
     sign,
-    check,
+    check
 };
