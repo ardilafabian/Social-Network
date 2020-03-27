@@ -12,8 +12,13 @@ function verify(token) {
 
 const check = {
     own: function(req, owner) {
-        const decode = decodeHeader(req);
-        console.log(decode);
+        const decoded = decodeHeader(req);
+        console.log(decoded);
+
+        //CHECK IF IT IS OWN OR NOT
+        if (decoded.id !== owner) {
+            throw new Error('Do not have access');
+        }
     }
 }
 
@@ -37,9 +42,10 @@ function decodeHeader(req) {
 
     req.user = decoded;
 
-    return 
+    return decoded;
 }
 
 module.exports = {
     sign,
+    check,
 };
