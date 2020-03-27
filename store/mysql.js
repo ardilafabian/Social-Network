@@ -20,7 +20,7 @@ function handleCon() {
             console.error('[DB error]', err);
             setTimeout(handleCon, 2000);
         } else {
-            console.log('DB Connected!')
+            console.log('DB Connected!');
         }
     });
 
@@ -35,3 +35,16 @@ function handleCon() {
 }
 
 handleCon();
+
+function list(table) {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT * FROM ${table}`, (error, data) => {
+            if (error) return reject(error);
+            resolve(data);
+        });
+    })
+}
+
+module.exports = {
+    list
+};
