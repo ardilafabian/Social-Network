@@ -52,11 +52,18 @@ module.exports = function(injectedStore) {
         })
     }
 
+    function followers(userId) {
+        return store.query(TABLA + '_follow', {
+            user_to:userId
+        });
+    }
+
     return {
         list,
         get,
         upsert,
         remove,
-        follow
+        follow,
+        followers
     };
 }

@@ -9,6 +9,7 @@ const router = express.Router();
 // Routes
 router.get('/', list);
 router.post('/follow/:id', secure('follow'), follow);
+router.get('/followers', secure('follow'), followers);
 router.get('/:id', get);
 router.post('/', upsert);
 router.put('/', secure('update'), upsert);
@@ -51,6 +52,14 @@ function follow(req, res, next) {
     Controller.follow(req.user.id, req.params.id)
         .then(data => {
             response.success(req, res, data, 201);
+        })
+        .catch(next);
+}
+
+function followers(req, res, next) {
+    Controller.followers(req.user.id)
+        .then(data => {
+            response.success(req, res, data, 200);
         })
         .catch(next);
 }
